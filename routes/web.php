@@ -14,6 +14,10 @@ route::get('/dashboard',[HomeController::class,'login_home' ])
 //     return view('home.index');
 // });
 
+Route::get('/anil_cart',function(){
+    return view('anil.ProductSinglePage');
+});
+
 // Route::get('/dashboard', function () {
 //     return view('home.index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -81,3 +85,6 @@ route::get('user_checkout',[HomeController::class,'checkout'])
 
 route::post('process_order',[HomeController::class,'process_order'])
 ->middleware(['auth', 'verified']);
+
+
+

@@ -83,8 +83,26 @@ route::delete('remove_cart/{id}',[HomeController::class,'remove_cart'])
 route::get('user_checkout',[HomeController::class,'checkout'])
 ->middleware(['auth', 'verified']);
 
-route::post('process_order',[HomeController::class,'process_order'])
+Route::post('/process_order/{id}', [HomeController::class, 'process_order'])
+    ->name('process_order') // Add this line to name the route
+    ->middleware(['auth', 'verified']);
+
+    route::get('view_orders',[AdminController::class,'view_orders'])
 ->middleware(['auth', 'verified']);
+
+Route::post('/update_order_status/{id}', [AdminController::class, 'update_order_status'])
+    ->middleware(['auth', 'verified']);
+
+Route::get('/download_invoice/{id}', [AdminController::class, 'downloadInvoice'])
+->name('download_invoice')
+->middleware(['auth', 'verified']);
+
+Route::get('/category/{category}', [HomeController::class, 'showByCategory'])->name('category.products');
+
+Route::get('/shop', [HomeController::class, 'category_by_products']);
+
+Route::get('/usermyorder', [HomeController::class, 'usermyorder']);
+
 
 
 

@@ -49,7 +49,7 @@
     <div class="checkout-container">
         <div class="checkout-header">Checkout</div>
 
-        <form action="{{asset('process_order')}}" method="POST">
+        <form action="{{ route('process_order', ['id' => $authUserId]) }}" method="POST">
             @csrf
 
             <div class="form-group">
@@ -75,6 +75,7 @@
             <input type="radio" name="payment" value="cod" > Cash on delivery </input> <br/>
             {{-- <input type="radio" name="payment" value="cod" > UPID payment </input> --}}
             <br/>  <br/>
+            <input type="hidden" name="payment_status" value="pending">
             <button type="submit" class="btn">Place Order</button>
         </form>
     </div>

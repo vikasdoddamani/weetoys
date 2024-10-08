@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
+
+
+    protected $casts = [
+        'payments' => 'float',
+    ];
+
     public function user()
     {
         return $this->hasOne('App\Models\User','id','user_id');

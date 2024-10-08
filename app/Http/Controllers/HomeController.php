@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+
 class HomeController extends Controller
 {
     public function index()
@@ -108,9 +111,67 @@ public function checkout(Request $request)
 }
 
 
-public function process_order()
+public function process_order(Request $request, $id)
 {
+    $authUserId = Auth::id();
+
+    $cartItems = Cart::where('user_id', $authUserId)->get();
+
+    if ($cartItems->isEmpty()) {
+        return redirect()->back()->with('error', 'Your cart is empty.');
+    }
+
+    DB::transaction(function () use ($cartItems, $request, $authUserId) {
+        foreach ($cartItems as $cartItem) {
+            $order = new Order;
+            $order->name = $request->name;
+            $order->rec_address = $request->address;
+            $order->phone = $request->phone;
+            $order->payments = $request->payment;
+            $order->payment_status = $request->payment_status;
+            $order->user_id = $authUserId;
+            $order->product_id = $cartItem->product_id;
+            $order->save();
+        }
+        Cart::where('user_id', $authUserId)->delete();
+    });
+
     return view('home.thankyou');
 }
+
+
+public function showByCategory($category)
+{
+    $products = Product::where('category', $category)->get();
+    $user = Auth::user();
+    $count = $user ? Cart::where('user_id', $user->id)->count() : 0;
+
+    return view('home.all_product', compact('products', 'count'));
+}
+
+public function category_by_products(Request $request)
+{
+    $user = Auth::user();
+    $category = $request->query('category');
+    $products = $category ? Product::where('category', $category)->get() : Product::all();
+    $count = $user ? Cart::where('user_id', $user->id)->count() : 0;
+    return view('home.all_product', compact('products', 'count'));
+}
+
+public function usermyorder()
+{
+    if (Auth::id()) {
+        $user = Auth::user();
+        $userid = $user->id;
+        $count = Cart::where('user_id', $userid)->count();
+        $cart = Order::where('user_id', $userid)->get();
+    } else {
+        $count = 0;
+        $cart = [];
+    }
+        return view('home.my_order', compact('count', 'cart'));
+}
+
+
 
 }

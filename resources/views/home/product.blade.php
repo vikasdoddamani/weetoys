@@ -30,19 +30,22 @@
 {{-- Session 2 --}}
 <div class="flex_index_index_card">
     @foreach(['vehicle' => 'Ace_Yellow.jpg', 'kitchen appliances' => 'Gas_SET.png', 'Home appliances' => 'Group_Mixer.png', 'accessories' => '4in tyer.png'] as $category => $image)
-        <div class="card-container">
-            <div class="card">
-                <div class="card-header">
-                    <h2>{{ $category }}</h2>
-                </div>
-                <div class="card-body">
-                    <p class="card-message">
+    <div class="card-container">
+        <div class="card">
+            <div class="card-header">
+                <h2>{{ $category }}</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-message">
+                    <a href="{{ route('category.products', ['category' => $category]) }}">
                         <img width="200" height="200" src="/images/{{ $image }}" alt="{{ $category }}">
-                    </p>
-                </div>
+                    </a>
+                </p>
             </div>
         </div>
-    @endforeach
+    </div>
+@endforeach
+
 </div>
 {{-- End of Session 2 --}}
 

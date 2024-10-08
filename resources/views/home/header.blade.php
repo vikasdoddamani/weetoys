@@ -20,12 +20,13 @@
                 Category
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="shop.html?category=vehicle">Vehicle</a>
-                <a class="dropdown-item" href="shop.html?category=kitchen-appliances">Kitchen Appliances</a>
-                <a class="dropdown-item" href="shop.html?category=home-appliances">Home Appliances</a>
-                <a class="dropdown-item" href="shop.html?category=accessories">Accessories</a>
+                <a class="dropdown-item" href="{{ url('shop?category=vehicle') }}">Vehicle</a>
+                <a class="dropdown-item" href="{{ url('shop?category=kitchen-appliances') }}">Kitchen Appliances</a>
+                <a class="dropdown-item" href="{{ url('shop?category=home-appliances') }}">Home Appliances</a>
+                <a class="dropdown-item" href="{{ url('shop?category=accessories') }}">Accessories</a>
             </div>
         </li>
+
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,9 +56,7 @@
                 Most Popular
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">My order</a>
-          </li>
+
         </ul>
         <div class="user_option">
 
@@ -65,23 +64,31 @@
 
             @auth
 
-            <a href="{{url('mycart')}}">
-                <i class="fa fa-shopping-bag" style="color: white;" aria-hidden="true">   {{ $count ?? 0 }}</i>
+            <a  href="{{url('mycart')}}">
+                <i class="fa fa-shopping-bag" style="color: white;" aria-hidden="true">   {{ $count ?? 0 }}</i></a>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color: white;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Profile
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link" style="color: rgb(2, 2, 2);" href="{{asset('usermyorder')}}">My order</a>
+                        <form style="padding:10px;" method="POST" action="{{ route('logout') }}">
+                            @csrf
 
+                            <input class="btn btn-success" type="submit" value="Logout">
+                        </form>
+                    </div>
+                </li>
 
             </a>
-              <form class="form-inline ">
+              {{-- <form class="form-inline ">
                 <button class="btn nav_search-btn" type="submit">
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
-              </form>
+              </form> --}}
 
-            <form style="padding:10px;" method="POST" action="{{ route('logout') }}">
-                @csrf
 
-                <input class="btn btn-success" type="submit" value="Logout">
-            </form>
 
 
             @else

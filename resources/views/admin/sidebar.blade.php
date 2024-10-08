@@ -13,7 +13,7 @@
 
       <span class="heading">Main</span>
       <ul class="list-unstyled">
-              <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
+              <li class="active"><a href="{{url('admin/dashboard')}}"> <i class="icon-home"></i>Home </a></li>
 
 
               <li><a href="{{url('view_category')}}"> <i class="icon-grid"></i>Category </a></li>
@@ -23,8 +23,9 @@
                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                   <li><a href="{{url('add_product')}}">Add Product</a></li>
                   <li><a href="{{url('view_product')}}">View Products</a></li>
-                  <li><a href="#"></a></li>
                 </ul>
               </li>
+
+              <li><a href="{{url('view_orders')}}"> <i class="icon-grid"></i>Order's </a></li>
       </ul>
     </nav>

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Order;
+use PDF;
+
+
 class AdminController extends Controller
 {
     public function view_category()
@@ -148,7 +152,37 @@ public function edit_product(Request $request, $id)
     {
         $search = $request->search;
         $product =Product::where('title','LIKE','%'.$search.'%')->paginate(10);
-        return view('admin.product.view_product',compact('product')); 
+        return view('admin.product.view_product',compact('product'));
+    }
+
+    public function view_orders()
+    {
+        $orders=Order::paginate(10);
+        return view ('admin.orders.view_order',compact('orders'));
+    }
+
+    public function update_order_status(Request $request,$id)
+    {
+        $order = Order::find($id);
+        if (!$order) {
+            return redirect()->back()->with('error', 'Order not found.');
+        }
+        $order->status = $request->status;
+        $order->save();
+        toastr()->closeButton()->timeOut(10000)->success('Order status updated successfully....');
+        return redirect()->back();
+    }
+
+    public function downloadInvoice($id)
+    {
+        // Fetch the order data with the related product
+        $order = Order::with('product')->findOrFail($id); // Load the product relationship
+
+        // Load the view and pass the order data
+        $pdf = PDF::loadView('invoice', compact('order'));
+
+        // Download the PDF
+        return $pdf->download('invoice_' . $order->id . '.pdf');
     }
 
 }

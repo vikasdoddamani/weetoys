@@ -34,6 +34,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-right: 10px; /* Add space between buttons */
         }
         .btn:hover {
             background-color: #218838;
@@ -49,7 +50,7 @@
     <div class="checkout-container">
         <div class="checkout-header">Checkout</div>
 
-        <form action="{{asset('process_order')}}" method="POST">
+        <form id="checkout-form" action="{{ route('process_order', ['id' => $authUserId]) }}" method="POST">
             @csrf
 
             <div class="form-group">
@@ -72,17 +73,27 @@
                 <input type="hidden" name="amount" value="{{ $totalAmount }}">
             </div>
 
-            <input type="radio" name="payment" value="cod" > Cash on delivery </input> <br/>
-            {{-- <input type="radio" name="payment" value="cod" > UPID payment </input> --}}
-            <br/>  <br/>
-            <button type="submit" class="btn">Place Order</button>
+            <input type="hidden" name="payment_status" value="pending">
+
+            <button type="submit" class="btn">Cash on Delivery</button>
         </form>
+
+        <button type="button" class="btn" id="checkout-button">Pay with QR Code</button>
     </div>
 
     @include('home.footer')
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+
+    <script>
+        document.getElementById('checkout-button').addEventListener('click', function() {
+            const form = document.getElementById('checkout-form');
+            // Redirect to payment integration route with necessary data
+            window.location.href = "{{ route('payment_integration', ['amount' => $totalAmount]) }}"; // Pass the amount if needed
+        });
+    </script>
+
 </body>
 
 </html>

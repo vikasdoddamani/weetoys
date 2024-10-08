@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="{{asset('css/anil/cart.css')}}">
+    <link rel="stylesheet" href="{{asset('css/anil/ProductSinglePage.css')}}">
 
     @include('home.css')
 
@@ -29,10 +29,9 @@
 
 {{-- start design from here --}}
 
-<div class="con">
+<!-- <div class="con">
 <img src="{{url('/images/Ace_Yellow.jpg')}}" alt="img">
-
-</div>
+</div> -->
 
 
 

@@ -9,7 +9,8 @@ use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Endroid\QrCode\QrCode; // Import QrCode class
+use Endroid\QrCode\Writer\PngWriter; // Import PngWriter class
 
 class HomeController extends Controller
 {
@@ -122,12 +123,13 @@ public function process_order(Request $request, $id)
     }
 
     DB::transaction(function () use ($cartItems, $request, $authUserId) {
+        $payment='cod';
         foreach ($cartItems as $cartItem) {
             $order = new Order;
             $order->name = $request->name;
             $order->rec_address = $request->address;
             $order->phone = $request->phone;
-            $order->payments = $request->payment;
+            $order->payments = $payment;
             $order->payment_status = $request->payment_status;
             $order->user_id = $authUserId;
             $order->product_id = $cartItem->product_id;
@@ -171,7 +173,24 @@ public function usermyorder()
     }
         return view('home.my_order', compact('count', 'cart'));
 }
+public function showPaymentForm(Request $request)
+{
+    $amount = $request->input('amount'); // Get the amount from the session or request
+    $upiId = 'vikasdoddamani1233@axl'; // Replace with your actual UPI ID
 
+    // Generate the UPI payment string
+    $upiString = "upi://pay?pa={$upiId}&pn=vikas&mc=0000&mode=02&purpose=00&tid=TransactionId&tt=TransactionTitle&am={$amount}&cu=INR&url=https://weetoys.in";
+
+    // Generate QR code
+    $qrCode = new QrCode($upiString);
+    $writer = new PngWriter();
+    $result = $writer->write($qrCode);
+
+    // Get the QR code image as a base64 string
+    $qrCodeDataUri = $result->getDataUri();
+
+    return view('payment.integration', compact('qrCodeDataUri', 'amount'));
+}
 
 
 }

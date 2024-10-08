@@ -14,7 +14,7 @@ route::get('/dashboard',[HomeController::class,'login_home' ])
 //     return view('home.index');
 // });
 
-Route::get('/anil_cart',function(){
+Route::get('anil_cart',function(){
     return view('anil.ProductSinglePage');
 });
 
@@ -102,6 +102,8 @@ Route::get('/category/{category}', [HomeController::class, 'showByCategory'])->n
 Route::get('/shop', [HomeController::class, 'category_by_products']);
 
 Route::get('/usermyorder', [HomeController::class, 'usermyorder']);
+
+Route::get('/payment-integration', [HomeController::class, 'showPaymentForm'])->name('payment_integration');
 
 
 

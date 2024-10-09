@@ -3,43 +3,24 @@
 
 <head>
     @include('admin.css')
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
-        .div_deg {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .form-container {
             margin-top: 60px;
         }
 
         h1 {
             color: white;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         label {
-            display: inline-block;
-            width: 250px;
-            font-size: 18px !important;
             color: white !important;
         }
 
-        input[type='text'],
-        input[type='number'] {
-            width: 350px;
-            height: 50px;
-        }
-
-        textarea {
-            width: 450px;
-            height: 80px;
-        }
-
         .input_deg {
-            padding: 15px;
-        }
-
-        select {
-            width: 360px;
-            height: 50px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -50,78 +31,61 @@
     </header>
     @include('admin.sidebar')
 
-    <!-- Sidebar Navigation end-->
     <div class="page-content">
         <div class="page-header">
-            <div class="container-fluid">
+            <div class="container-fluid form-container">
                 <h1>Add Product</h1>
-                <div class="div_deg">
-                    <form action="{{ url('upload_product') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="input_deg">
+                <form action="{{ url('upload_product') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6 input_deg">
                             <label>Product Title</label>
-                            <input type="text" name="title" required />
+                            <input type="text" name="title" class="form-control" required />
                         </div>
 
-                        <div class="input_deg">
-                            <label>Description</label>
-                            <textarea name="description" required></textarea>
-                        </div>
-
-                        <div class="input_deg">
-                            <label>SKU</label>
-                            <textarea name="sku"></textarea>
-                        </div>
-
-                        <div class="input_deg">
-                            <label>SKU Tab</label>
-                            <textarea name="SKU_Tab"></textarea>
-                        </div>
-
-                        <div class="input_deg">
-                            <label>SKU Product ID</label>
-                            <textarea name="SKU_Product_ID"></textarea>
-                        </div>
-
-                        <div class="input_deg">
-                            <label>Product ID</label>
-                            <textarea name="Product_ID"></textarea>
-                        </div>
-
-                        <div class="input_deg">
-                            <label>Color</label>
-                            <input type="text" name="color" />
-                        </div>
-
-                        <div class="input_deg">
+                        <div class="col-md-6 input_deg">
                             <label>Price</label>
-                            <input type="text" name="price" required />
+                            <input type="text" name="price" class="form-control" required />
                         </div>
 
-                        <div class="input_deg">
+                        <div class="col-md-6 input_deg">
+                            <label>Description</label>
+                            <textarea name="description" class="form-control" required></textarea>
+                        </div>
+
+                        <div class="col-md-6 input_deg">
                             <label>Quantity</label>
-                            <input type="number" name="qty" required />
+                            <input type="number" name="qty" class="form-control" required />
                         </div>
 
-                        <div class="input_deg">
+                        <div class="col-md-6 input_deg">
+                            <label>SKU</label>
+                            <input type="text" name="sku" class="form-control" />
+                        </div>
+
+                        <div class="col-md-6 input_deg">
+                            <label>Color</label>
+                            <input type="text" name="color" class="form-control" />
+                        </div>
+
+                        <div class="col-md-6 input_deg">
                             <label>MRP</label>
-                            <input type="text" name="mrp" />
+                            <input type="text" name="mrp" class="form-control" />
                         </div>
 
-                        <div class="input_deg">
+                        <div class="col-md-6 input_deg">
                             <label>Discount</label>
-                            <input type="text" name="Disc" />
+                            <input type="text" name="Disc" class="form-control" />
                         </div>
 
-                        <div class="input_deg">
+                        <div class="col-md-6 input_deg">
                             <label>Bundle</label>
-                            <input type="text" name="Bundle" />
+                            <input type="text" name="Bundle" class="form-control" />
                         </div>
 
-                        <div class="input_deg">
+                        <div class="col-md-6 input_deg">
                             <label>Product Category</label>
-                            <select required name="category">
+                            <select required name="category" class="form-control">
                                 <option>Select an option</option>
                                 @foreach($category as $cat)
                                     <option value="{{ $cat->category_name }}">{{ $cat->category_name }}</option>
@@ -129,26 +93,24 @@
                             </select>
                         </div>
 
-                        <div class="input_deg">
+                        <div class="col-md-6 input_deg">
                             <label>Product Image</label>
-                            <input type="file" name="image" />
+                            <input type="file" name="images" class="form-control" />
                         </div>
 
-                        <div class="input_deg">
+                        <div class="col-md-6 input_deg">
                             <label>Additional Images</label>
-                            <input type="file" name="images" />
-                            <input type="file" name="images1" />
-                            <input type="file" name="images2" />
-                            <input type="file" name="images3" />
-                            <input type="file" name="images4" />
+                            <input type="file" name="images1" class="form-control" />
+                            <input type="file" name="images2" class="form-control" />
+                            <input type="file" name="images3" class="form-control" />
+                            <input type="file" name="images4" class="form-control" />
                         </div>
 
-                        <div class="input_deg">
+                        <div class="col-md-12 input_deg">
                             <input type="submit" class="btn btn-success" value="Submit" />
                         </div>
-
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -161,7 +123,4 @@
     <script src="{{ asset('admincss/vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('admincss/vendor/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('admincss/js/charts-home.js') }}"></script>
-    <script src="{{ asset('admincss/js/front.js') }}"></script>
-</body>
-
-</html>
+    <script src="{{ asset('admincss/js/fron

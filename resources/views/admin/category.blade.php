@@ -5,7 +5,7 @@
     <style type="text/css">
 input[type="text"]
 {
- width:400px;
+ width:60%;
  height:50px;
 }
 .div_deg{
@@ -66,6 +66,7 @@ td{
         </div>
 
 <div>
+    <div style="overflow-x:auto;">
 <table class="table_deg">
     <tr>
         <th>
@@ -93,7 +94,7 @@ td{
     </tr>
     @endforeach
 </table>
-
+    </div>
 </div>
 
           </div>

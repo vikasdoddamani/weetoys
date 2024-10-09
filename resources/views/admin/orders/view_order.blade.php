@@ -65,14 +65,14 @@ td{
           </form> --}}
         </div>
 
-<div>
+        <div style="overflow-x:auto;">
 <table class="table_deg">
     <tr>
         <th>
             Product Title
         </th>
         <th>
-            order id
+            SKU
         </th>
         <th>
             shipping address
@@ -97,7 +97,7 @@ td{
             {{$orders->product->title}}
         </td>
         <td>
-            {{$orders->id}}
+            {{$orders->sku}}
         </td>
         <td>
             {{$orders->name}} <br/>

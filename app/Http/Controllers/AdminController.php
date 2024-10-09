@@ -125,20 +125,31 @@ public function edit_product(Request $request, $id)
     $data->price = $request->price;
     $data->category = $request->category;
     $data->quantity = $request->qty;
+    $data->sku = $request->sku;
+    $data->SKU_Tab = $request->SKU_Tab;
+    $data->SKU_Product_ID = $request->SKU_Product_ID;
+    $data->Product_ID = $request->Product_ID;
+    $data->color = $request->color;
+    $data->mrp = $request->mrp;
+    $data->Disc = $request->Disc;
+    $data->Bundle = $request->Bundle;
 
     // Check if a new image is uploaded
-    if ($request->hasFile('images')) {
-        // Delete the old image if exists
-        if (file_exists(public_path('product/' . $data->images))) {
-            unlink(public_path('product/' . $data->images));
-        }
+    $images = ['images', 'images1', 'images2', 'images3'];
 
-        // Store the new image
-        $image = $request->file('images');
-        $imagename = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('product'), $imagename);
-        $data->images = $imagename; // Update the images field
+    foreach ($images as $imageField) {
+        if ($request->hasFile($imageField)) {
+            if (file_exists(public_path('product/' . $data->$imageField))) {
+                unlink(public_path('product/' . $data->$imageField));
+            }
+            $image = $request->file($imageField);
+            $imageName = time() . '_' . $imageField . '.' . $image->getClientOriginalExtension(); // Unique name
+            $image->move(public_path('product'), $imageName);
+            $data->$imageField = $imageName;
+        }
     }
+
+
 
     // Save the updated product
     $data->save();

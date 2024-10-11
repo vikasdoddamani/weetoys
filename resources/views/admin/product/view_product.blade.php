@@ -5,19 +5,21 @@
     @include('admin.css')
 <style type="text/css">
 
-    .div_deg
-    {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 60px;
-    }
+.div_deg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    width: 100%; /* or a specific width */
+    overflow-x: auto; /* Move this from inline to CSS */
+}
 
-    .table_deg
-    {
-        border: 2px solid greenyellow
-    }
 
+.table_deg {
+    border: 2px solid greenyellow;
+    width: 100%; /* Ensure it takes full width */
+    table-layout: auto; /* Allow the table to resize */
+}
     th{
         background-color: skyblue;
         color: white;
@@ -33,7 +35,7 @@
 
     input[type="search"]
     {
-        width: 500px;
+        width: 40%;
         height: 50px;
         margin-left: 50px;
     }
@@ -56,16 +58,17 @@
                 <input type="submit" class="btn btn-secondary" name="Search">
             </form>
 
-            <div class="div_deg">
-                <table class="table_deg">
+            <div style="overflow-x:auto;" class="div_deg">
+                <table  class="table_deg">
                     <tr>
+                        <th> SKU </th>
                         <th>
                             Product Title
                         </th>
                         <th> Description</th>
                         <th> Price </th>
                         <th> Category</th>
-                        <th> Quantity </th>
+                        <th> Stocks </th>
                         <th>Images</th>
                         <th>Delete</th>
                         <th>Edit</th>
@@ -74,6 +77,7 @@
 
                         @foreach($product as $products)
                         <tr>
+                        <td> {{$products->sku}}</td>
                         <td> {{$products->title}}</td>
                         <td> {!!Str::limit($products->description,50)!!}</td>
                         <td> {{$products->price}}</td>

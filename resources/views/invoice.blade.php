@@ -31,7 +31,7 @@
 <body>
 
     <div class="header">
-        <h1>Invoice #{{ $order->id }}</h1>
+        <h1>Order NO - {{ $order->id }}</h1>
         <p>Date: {{ $order->created_at->format('d-m-Y') }}</p>
     </div>
 
@@ -58,7 +58,11 @@
             </tr>
         </tbody>
     </table>
-
+<div class="shoptitle">
+    <h4>Return to this address:</h4>
+    <h1> WeeToys </h1>
+    <h6> Banglore </h6>
+</div>
 
 </body>
 </html>

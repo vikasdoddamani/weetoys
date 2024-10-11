@@ -1,3 +1,14 @@
+<style type="text/css">
+
+@media (max-width: 600px) {
+.flex_index_index_card
+{
+    flex-direction: column;
+}
+}
+</style>
+
+
 <section class="shop_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">

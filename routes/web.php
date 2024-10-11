@@ -14,8 +14,12 @@ route::get('/dashboard',[HomeController::class,'login_home' ])
 //     return view('home.index');
 // });
 
-Route::get('anil_cart',function(){
+Route::get('anil_productpage',function(){
     return view('anil.ProductSinglePage');
+});
+
+Route::get('cart_page',function(){
+    return view('anil.Cart');
 });
 
 // Route::get('/dashboard', function () {

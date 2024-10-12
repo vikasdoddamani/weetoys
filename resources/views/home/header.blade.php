@@ -28,7 +28,7 @@
         </li>
 
 
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 By Age
             </a>
@@ -38,9 +38,9 @@
                 <a class="dropdown-item" href="shop.html?category=home-appliances">5 - 6 year</a>
                 <a class="dropdown-item" href="shop.html?category=accessories">6 - 10 year</a>
             </div>
-        </li>
+        </li> --}}
 
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Event's Toys
             </a>
@@ -50,12 +50,13 @@
                 <a class="dropdown-item" href="shop.html?category=home-appliances">Ace</a>
                 <a class="dropdown-item" href="shop.html?category=accessories">Formula - one</a>
             </div>
-        </li>
-          <li class="nav-item">
+        </li> --}}
+
+          {{-- <li class="nav-item">
             <a class="nav-link" href="testimonial.html">
                 Most Popular
             </a>
-          </li>
+          </li> --}}
 
         </ul>
         <div class="user_option">

@@ -4,6 +4,40 @@
 <head>
     @include('home.css')
     <style>
+
+.product-image {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.image-wrapper {
+    flex: 1 1 calc(25% - 20px); /* 4 images in a row */
+    margin: 10px;
+    max-width: calc(25% - 20px); /* Ensures a max width for each image */
+}
+
+.product-img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover; /* Ensures the image covers the space nicely */
+}
+
+@media (max-width: 768px) {
+    .image-wrapper {
+        flex: 1 1 calc(50% - 20px); /* 2 images in a row on medium screens */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .image-wrapper {
+        flex: 1 1 100%; /* 1 image per row on small screens */
+        max-width: 100%;
+    }
+}
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
@@ -19,7 +53,9 @@
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
         }
 
         .product-container {
@@ -27,43 +63,52 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: flex-start;
-            margin: 0 -15px;
         }
 
         .product-image {
             flex: 1;
             min-width: 300px;
-            max-width: 400px;
-            padding: 15px;
+            max-width: 450px;
+            padding: 20px;
         }
 
         .product-details {
             flex: 2;
-            padding: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-title {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
             color: #333;
-            margin: 0 0 10px;
+            margin: 0 0 15px;
         }
 
         .product-price {
-            font-size: 28px;
+            font-size: 32px;
             color: green;
             margin: 5px 0;
         }
 
         .mrpprice {
-            font-size: 18px;
+            font-size: 20px;
             color: #999;
             text-decoration: line-through;
+            margin: 5px 0;
+        }
+
+        .discount {
+            font-size: 20px;
+            color: red;
+            margin: 10px 0;
         }
 
         .product-category,
         .product-description {
-            font-size: 16px;
+            font-size: 18px;
             margin: 10px 0;
             color: #555;
         }
@@ -72,11 +117,12 @@
             background-color: #28a745;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
             transition: background-color 0.3s;
+            align-self: flex-start;
         }
 
         .add-to-cart-btn:hover {
@@ -91,9 +137,7 @@
 
             .product-image,
             .product-details {
-                flex: none;
                 width: 100%;
-                max-width: none;
                 padding: 10px 0;
             }
 
@@ -105,7 +149,13 @@
                 font-size: 24px;
             }
 
-            .mrpprice {
+            .mrpprice,
+            .discount {
+                font-size: 18px;
+            }
+
+            .product-category,
+            .product-description {
                 font-size: 16px;
             }
         }
@@ -129,14 +179,30 @@
                 </div>
                 <div class="product-details">
                     <div class="product-title">{{$data->title}}</div>
-                    <div class="product-price">&#8377; {{$data->price}}</div>
-                    <div class="mrpprice">MRP: &#8377; {{$data->mrp}}</div>
+                    <div class="product-price" id="price"></div>
+                    <div class="mrpprice" id="mrp"></div>
+                    <div class="discount" id="discount"></div>
                     <div class="product-category">Category: {{$data->category}}</div>
                     <div class="product-description">Description: {{$data->description}}</div>
                     <button class="add-to-cart-btn" onclick="window.location='{{ url('add_cart', $data->id) }}'">Add to Cart</button>
                 </div>
             </div>
         </div>
+        <div class="product-image">
+            <div class="image-wrapper">
+                <img src="/product/{{$data->images2}}" alt="{{$data->title}}" class="product-img">
+            </div>
+            <div class="image-wrapper">
+                <img src="/product/{{$data->images3}}" alt="{{$data->title}}" class="product-img">
+            </div>
+            <div class="image-wrapper">
+                <img src="/product/{{$data->images4}}" alt="{{$data->title}}" class="product-img">
+            </div>
+            <div class="image-wrapper">
+                <img src="/product/{{$data->images5}}" alt="{{$data->title}}" class="product-img">
+            </div>
+        </div>
+
     </section>
     <!-- End Product Detail -->
 
@@ -148,6 +214,22 @@
     <script src="{{asset('js/bootstrap.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="js/custom.js"></script>
+
+    <script>
+        // Format price in Indian currency format
+        function formatPrice(price) {
+            return '₹ ' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Calculate and format prices and discount
+        const price = {{ $data->price }};
+        const mrp = {{ $data->mrp }};
+        const discount = Math.round(((mrp - price) / mrp) * 100); // Calculate discount percentage
+
+        document.getElementById('price').innerHTML = formatPrice(price);
+        document.getElementById('mrp').innerHTML = 'MRP: ' + formatPrice(mrp);
+        document.getElementById('discount').innerHTML = discount > 0 ? 'Discount: ' + discount + '%' : '';
+    </script>
 </body>
 
 </html>

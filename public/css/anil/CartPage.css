@@ -1,0 +1,90 @@
+
+.Cart-Top-MainContainer
+{
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+}
+.Cart-Top-left-container
+{
+    margin: auto;
+    display: grid;
+    grid-template-rows: auto ;
+}
+.Cart-Top-left-container img
+{
+    /* position: relative; */
+    padding: 30px;
+    width: clamp(55px,20vw,315px);
+    height: clamp(55px,20vw,315px);
+}
+@media(max-width:800px)
+{
+    .Cart-Top-left-container img
+    {
+        width: clamp(85px,35vw,315px);
+        height: clamp(85px,35vw,315px);
+    }
+}
+.Cart-Qty
+{
+    margin: auto;
+    font-size: 1.5vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+.Cart-Top-left-container input
+{
+    width: 9vw;
+    font-size: 1.5vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+.Cart-Top-Right-container h2
+{
+    padding-top: 25px;
+    font-size: 1.5vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+.Cart-Top-Right-container p
+{
+    font-size: 0.8vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+}
+.Cart-Top-Right-container h3
+{
+    font-size: 1.2vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+.Cart-Top-Right-container h4
+{
+    font-size: 1vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    color: green;
+}
+.Cart-bottom-Delvery
+{
+    padding: 15px;
+    font-size: 1.3vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+.Cart-RSBuy-Buttons
+{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+}
+.Cart-RSBuy-Buttons button
+{
+    width:fit-content;
+    border-radius: 5px;
+    background-color: rgb(179, 127, 205);
+    border-color: rgb(179, 127, 205);
+    font-size: 1.5vw;
+    font-weight: 600;
+}

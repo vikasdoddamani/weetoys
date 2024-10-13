@@ -1,4 +1,4 @@
-<head>
+{{-- <head>
     <style type="css/text">
     .contact_section {
     padding: 20px;
@@ -117,4 +117,4 @@ button:hover {
             </div>
         </div>
     </div>
-</section>
+</section> --}}

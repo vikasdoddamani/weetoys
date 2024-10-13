@@ -51,8 +51,8 @@
     <button>Buy ths now</button>
 </div>
 
-<h2>Price Details </h2>
-<div>
+<h2 class='Cart-Details'>Price Details </h2>
+<!-- <div>
     <table>
         <tr>
             <th>Price(1 tem)</th>
@@ -69,6 +69,34 @@
             <td>Rs.1200</td>
         </tr>
     </table>
+</div> -->
+<div class='Cart-Price-Details'>
+
+    <div class='Cart-Price'>
+        <label class='Cart-P1'>Price(1 tem)</label>
+        <label class='Cart-P2'>Rs.2555</label>
+    </div>
+    <div class='Cart-Price'>
+        <label class='Cart-P1'>Discount</label>
+        <label class='Cart-P2'>Rs.2555</label>
+    </div>
+    <div class='Cart-Price'>
+        <label class='Cart-P1'>Platform Fee</label>
+        <label class='Cart-P2'>Rs.60</label>
+    </div>
+    <div class='Cart-Price'>
+        <label class='Cart-P1'>Delivery Charges</label>
+        <label class='Cart-P2'>Free Delivery</label>
+    </div>
+    <div class='Cart-Price'>
+        <label class='Cart-P1'>Total Amount</label>
+        <label class='Cart-P2'>Rs.1555</label>
+    </div>
+
+</div>
+
+<div class='Cart-Place-Order'>
+<button class='Cart-PlaceOrder'>Place Order</button>
 </div>
 
 

@@ -40,6 +40,18 @@
     font-family: 'Times New Roman', Times, serif;
     font-weight: 600;
 }
+@media(max-width:800px)
+{
+    .Cart-Qty
+    {
+        font-size: 3vw;
+    }
+    .Cart-Top-left-container input
+    {
+        width: 15vw;
+        font-size: 2.5vw;
+    }
+}
 .Cart-Top-Right-container h2
 {
     padding-top: 25px;
@@ -66,12 +78,42 @@
     font-weight: 500;
     color: green;
 }
+@media(max-width:800px)
+{
+    .Cart-Top-Right-container h2
+    {
+        font-size: 3vw;
+    }
+    .Cart-Top-Right-container p
+    {
+        font-size: 1.5vw;
+        font-weight: 600;
+    }
+    .Cart-Top-Right-container h3
+    {
+        font-size: 2.5vw;
+        font-weight: 600;
+    }
+    .Cart-Top-Right-container h4
+    {
+        font-size: 2vw;
+        font-weight: 600;
+    }
+}
 .Cart-bottom-Delvery
 {
-    padding: 15px;
+    padding: 25px;
     font-size: 1.3vw;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 500;
+}
+@media(max-width:800px)
+{
+    .Cart-bottom-Delvery
+    {
+        font-size: 2.2vw;
+        font-weight: 600;
+    }
 }
 .Cart-RSBuy-Buttons
 {
@@ -87,4 +129,53 @@
     border-color: rgb(179, 127, 205);
     font-size: 1.5vw;
     font-weight: 600;
+}
+.Cart-Details
+{
+    padding: 25px;
+    font-size: 2vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+@media(max-width:800px)
+{
+    .Cart-Details
+    {
+        font-size: 3.5vw;
+    }
+}
+.Cart-Price-Details
+{
+    padding: 45px;
+}
+.Cart-Price
+{
+    display: flex;
+    justify-content: space-around;
+    justify-content: space-between;
+    font-size: 1.3vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+@media(max-width:800px)
+{
+    .Cart-Price
+    {
+        font-size: 3vw;
+    }
+}
+.Cart-Place-Order
+{
+    display: grid;
+    justify-content: center;
+}
+.Cart-PlaceOrder
+{
+    padding: 5px;
+    font-size: 2vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+    background-color: rgb(194, 194, 17);
+    border-radius: 8px;
+    border-color:rgb(194, 194, 17) ;
 }
